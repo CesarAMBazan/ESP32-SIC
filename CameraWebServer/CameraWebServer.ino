@@ -1,5 +1,6 @@
-/* Este programa se compilo para observar la imagen de la camara
- * de la placa ESP32
+/* Este programa se compilo para observar la imagen de la camara de la placa ESP32
+ * 
+ * Despues se modifico para que tambien parpadeara el LED integrado de la placa
  */
 #include "esp_camera.h"
 #include <WiFi.h>
@@ -28,6 +29,7 @@ const char* password = "Bazongo4313";
 void startCameraServer();
 
 void setup() {
+  pinMode(4, OUTPUT); // Set the pin as output
   Serial.begin(115200);
   Serial.setDebugOutput(true);
   Serial.println();
@@ -110,6 +112,8 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  delay(10000);
+  digitalWrite(4, LOW); //Turn on
+  delay (1000); //Wait 1 sec
+  digitalWrite(4, HIGH); //Turn off
+  delay (1000); //Wait 1 sec
 }
