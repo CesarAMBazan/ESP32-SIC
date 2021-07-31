@@ -2,7 +2,8 @@
  * Conexión simple a WiFi
  * Por: Hugo Escalpelo
  * Fecha: 27 de junio de 2021
- * 
+ * Modificado por: Cesar Arturo Mejia Bazan
+ * Fecha de ultima modificación: 29 de julio de 2021
  * Este programa muestra una conexión básica a WiFi para 
  * ESP32CAM. Para ello es necesario que cambies el SSID y 
  * contraseña por los datos correspondientes a la red que 
@@ -11,18 +12,20 @@
  * 
  * En este programa se usan los leds soldados sobre la placa
  * ESP32CAM, el led flash y el led de status.
- * 
+ * con la moficicación que se realizo, ahora el programa tambien enciende un
+ * led externo conectado al pin 12 de la placa ESP32.
  * Componente     PinESP32CAM     Estados lógicos
  * ledStatus------GPIO 33---------On=>LOW, Off=>HIGH
  * ledFlash-------GPIO 4----------On=>HIGH, Off=>LOW
+ * ledRojo--------GPIO 12---------On=>HIGH, Off=>LOW
  */
 
 // Bibliotecas
 #include <WiFi.h>  // Biblioteca para manejar el WiFi del ESP32CAM
 
 // Datos de Red
-const char* ssid = "********";  // Pon aquí el nombre de la red a la que deseas conectarte
-const char* password = "********";  // Escribe la contraseña de dicha red
+const char* ssid = "Bazan";  // Pon aquí el nombre de la red a la que deseas conectarte
+const char* password = "Bazongo4313";  // Escribe la contraseña de dicha red
 
 // Objetos
 WiFiClient espClient; // Este objeto maneja las variables necesarias para una conexion WiFi
@@ -30,6 +33,7 @@ WiFiClient espClient; // Este objeto maneja las variables necesarias para una co
 // Variables del programa
 int statusLedPin = 33;  // Esta variable controla el led de status
 int flashLedPin = 4; // Esta variable controla el led flash
+int LedPin = 12; // Esta variable controla el led rojo
 double timeLast, timeNow; // Variables para el control de tiempo no bloqueante
 double wait = 500;  // Espera de 500 mili segundos para consultar conexión
 bool statusLed = 0;// Bandera que me dice si el led esta encendido o apagado
@@ -39,8 +43,10 @@ void setup() {
   //Configuración de pines
   pinMode (statusLedPin, OUTPUT);// Se configura el pin como salida
   pinMode (flashLedPin, OUTPUT);// Se configura el pin como salida
+  pinMode (LedPin, OUTPUT);// Se configura el pin como salida
   digitalWrite (statusLedPin, HIGH);// Se comienza con el led apagado
   digitalWrite (flashLedPin, LOW);// Se comienza con el led apagado
+  digitalWrite (LedPin, LOW); //Se comienza con el led rojo apagado
 
   //Inicialización de comunicación serial
   Serial.begin (115200);
@@ -66,9 +72,10 @@ void setup() {
   Serial.println("Direccion IP: ");
   Serial.println(WiFi.localIP());
 
-  // Si se logro la conexión, encender led
+  // Si se logro la conexión, encender los dos led
   if (WiFi.status () > 0){
   digitalWrite (flashLedPin, LOW);
+  digitalWrite (LedPin, HIGH);
   }
   timeLast = millis (); // Inicia el control de tiempo
 }// Fin del void setup 
