@@ -9,7 +9,7 @@ DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
   Serial.begin(115200);
-  Serial.println(F("Prueba de coenxion"));
+  Serial.println(F("Prueba de conexion"));
 
   dht.begin();
 }
