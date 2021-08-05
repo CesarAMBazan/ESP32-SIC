@@ -53,3 +53,9 @@ Para observar el funcionamiento de este proyecto deberás realizar lo siguiente.
 Podrás observar una cuenta progresiva, la cual envía el prográma base del ESP32CAM. Puedes controlar el led flash del ESP32CAM con el switch del dashboard.
 
 Por: [Hugo Vargas](https://github.com/hugoescalpelo)
+
+### Modificaciones
+
+Se modificaron los temas y clientes a los que se suscribe el programa, tambien se agregaron los datos del SSID al que el programa se conecta para tener acceso a la red WiFi.
+
+Modificado por: [Cesar Arturo Mejia Bazan](https://github.com/zerolcamb)
