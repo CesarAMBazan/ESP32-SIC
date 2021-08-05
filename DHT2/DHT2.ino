@@ -26,9 +26,9 @@ void loop() {
   }
 
  
-  Serial.print(F("Temperatura en °C"));
+  Serial.println(F("Temperatura en °C "));
   Serial.print(t);
-  Serial.print(F("Temperatura en °F"));
+  Serial.println(F("Temperatura en °F "));
   Serial.print(f);
   
 }
