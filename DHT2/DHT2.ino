@@ -1,6 +1,6 @@
 #include "DHT.h"
 
-#define DHTPIN 12   
+#define DHTPIN 13   
 
 #define DHTTYPE DHT11   
 
@@ -26,9 +26,9 @@ void loop() {
   }
 
  
-  Serial.println(F("Temperatura en °C "));
+  Serial.println(F("Temperatura en °C"));
   Serial.print(t);
-  Serial.println(F("Temperatura en °F "));
+  Serial.println(F("Temperatura en °F"));
   Serial.print(f);
   
 }
